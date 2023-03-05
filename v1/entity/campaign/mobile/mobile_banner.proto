@@ -1,0 +1,19 @@
+import "mobile_action.proto";
+import "icon.proto";
+import "style.proto";
+
+message MobileBanner {
+  oneof MobileBannerUnion {
+    MobileStandardBanner standard = 1;
+  }
+}
+
+message MobileStandardBanner {
+  required string heading = 1;
+  required Icon leading_icon = 2;
+  required Icon trailing_icon = 3;
+  required MobileAction action = 4;
+  optional Color background_color = 5;
+  optional Color text_color = 6;
+  optional Color border_color = 7;
+}

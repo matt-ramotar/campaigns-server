@@ -1,0 +1,8 @@
+import "google/protobuf/empty.proto";
+import "style.proto";
+
+message Image {
+  required string lightUrl = 1;
+  required string darkUrl = 2;
+  optional Color background_color = 3;
+}

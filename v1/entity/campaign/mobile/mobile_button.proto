@@ -1,0 +1,28 @@
+import "mobile_action.proto";
+import "icon.proto";
+import "style.proto";
+
+message MobileButton {
+  oneof MobileButtonUnion {
+    MobilePrimaryButton primary_button = 1;
+    MobileMultilineButton multiline_button = 2;
+  }
+}
+
+message MobilePrimaryButton {
+  required string label = 1;
+  required MobileAction action = 2;
+  optional Color background_color = 3;
+  optional Color text_color = 4;
+  optional Color border_color = 5;
+}
+
+message MobileMultilineButton {
+  required string heading = 1;
+  required string subheading = 2;
+  required Icon leading_icon = 3;
+  required Icon trailing_icon = 4;
+  optional Color background_color = 5;
+  optional Color text_color = 6;
+  optional Color border_color = 7;
+}

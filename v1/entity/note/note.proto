@@ -1,0 +1,9 @@
+import "style.proto";
+
+message Note {
+  required string id = 1;
+  required string content = 2;
+  optional Color background_color = 3;
+  optional Color text_color = 4;
+  optional Color border_color = 5;
+}

@@ -1,0 +1,15 @@
+import "google/protobuf/empty.proto";
+
+message ComponentBox {
+  required string content = 1;
+  required ComponentBoxType type = 2;
+}
+
+message ComponentBoxType {
+  oneof ComponentBoxTypeUnion {
+    google.protobuf.Empty top_banner = 1;
+    google.protobuf.Empty bottom_banner = 2;
+    google.protobuf.Empty popup_modal = 3;
+    google.protobuf.Empty screen = 4;
+  }
+}

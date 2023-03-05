@@ -1,0 +1,16 @@
+import "google/protobuf/empty.proto";
+import "style.proto";
+
+message Icon {
+  oneof IconUnion {
+    google.protobuf.Empty app = 1;
+    StatefulIcon close = 2;
+  }
+}
+
+message StatefulIcon {
+  required string active = 1;
+  required string inactive = 2;
+  optional Color foreground_color = 3;
+  optional Color background_color = 4;
+}

@@ -1,0 +1,33 @@
+import "google/protobuf/empty.proto";
+
+message Color {
+  oneof ColorUnion {
+    google.protobuf.Empty primary = 1;
+    google.protobuf.Empty secondary = 2;
+    google.protobuf.Empty accent = 3;
+    google.protobuf.Empty standard = 4;
+    google.protobuf.Empty faint = 5;
+    google.protobuf.Empty opacity = 6;
+
+    google.protobuf.Empty amber = 7;
+    google.protobuf.Empty blue = 8;
+    google.protobuf.Empty cyan = 9;
+    google.protobuf.Empty fuchsia = 10;
+    google.protobuf.Empty gray = 11;
+    google.protobuf.Empty green = 12;
+    google.protobuf.Empty emerald = 13;
+    google.protobuf.Empty indigo = 14;
+    google.protobuf.Empty lime = 15;
+    google.protobuf.Empty orange = 16;
+    google.protobuf.Empty pink = 17;
+    google.protobuf.Empty purple = 18;
+    google.protobuf.Empty red = 19;
+    google.protobuf.Empty rose = 20;
+    google.protobuf.Empty sky = 21;
+    google.protobuf.Empty teal = 22;
+    google.protobuf.Empty violet = 23;
+    google.protobuf.Empty yellow = 24;
+  }
+}
+
+

@@ -1,0 +1,57 @@
+import "mobile_button.proto";
+import "image.proto";
+import "icon.proto";
+import "mobile_action.proto";
+import "style.proto";
+
+message MobileScreen {
+  oneof MobileScreenUnion {
+    MobileAccountScreen account = 1;
+  }
+}
+
+message MobileAccountScreen {
+  oneof MobileAccountScreenUnion {
+    MobileStandardAccountScreen standard = 1;
+  }
+}
+
+message MobileStandardAccountScreen {
+  required string title = 1;
+  required MobilePrimaryButton button = 2;
+  required MobileMultilineButton multiline_button = 3;
+  repeated MobileModule modules = 4;
+}
+
+
+message MobileModule {
+  oneof MobileModuleUnion {
+    MobileListModule list = 1;
+  }
+}
+
+message MobileListModule {
+  oneof MobileListModuleUnion {
+    MobileStandardListModule standard = 1;
+  }
+}
+
+message MobileStandardListModule {
+  optional string heading = 1;
+  optional string subheading = 2;
+  optional Image image = 3;
+  repeated MobileStandardListModuleItem items = 4;
+  optional MobilePrimaryButton button = 5;
+}
+
+message MobileStandardListModuleItem {
+  required string title = 1;
+  required Icon leading_icon = 2;
+  required MobileAction action = 3;
+  optional string subtitle = 4;
+  optional Icon trailing_icon = 5;
+  optional Color background_color = 6;
+  optional Color text_color = 7;
+  optional Color border_color = 8;
+}
+

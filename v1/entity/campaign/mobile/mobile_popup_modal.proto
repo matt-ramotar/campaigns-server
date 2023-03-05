@@ -1,0 +1,20 @@
+import "mobile_button.proto";
+import "image.proto";
+import "style.proto";
+
+message MobilePopupModal {
+  oneof MobilePopupModalUnion {
+    MobileStandardPopupModal standard = 1;
+  }
+}
+
+message MobileStandardPopupModal {
+  required string heading = 1;
+  required string subheading = 2;
+  required MobilePrimaryButton button = 3;
+  optional Image image = 4;
+  optional Color background_color = 5;
+  optional Color text_color = 6;
+  optional Color border_color = 7;
+}
+

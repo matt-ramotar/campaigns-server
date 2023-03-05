@@ -1,0 +1,13 @@
+import "mobile_popup_modal.proto";
+import "mobile_banner.proto";
+import "mobile_screen.proto";
+import "component_box.proto";
+
+message CampaignContent {
+  oneof CampaignContentUnion {
+    MobilePopupModal mobile_popup_modal = 1;
+    MobileBanner mobile_banner = 2;
+    MobileScreen mobile_screen = 3;
+    ComponentBox component_box = 4;
+  }
+}
