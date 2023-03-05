@@ -11,24 +11,44 @@ const {
   MobileMultiPlanUpgradeScreen,
   StandardMobileAccountScreen,
   Campaign,
+  MobileMultiPlanUpgradeScreenCard,
 } = require('../../model/Campaign');
 
-const mongoose = require('mongoose');
-require('dotenv').config();
-
-const mongoDbConnectionString = process.env.MONGODB;
-
 const main = async () => {
-  await mongoose.connect(mongoDbConnectionString);
+  const devicesCouchImage = await Image.create({
+    lightUrl: 'https://api.componentbox.io/assets/light/devices_couch.svg',
+    darkUrl: 'https://api.componentbox.io/assets/dark/devices_couch.svg',
+  });
 
-  const db = mongoose.connection.db;
-  const collections = await db.listCollections().toArray();
-  for (const collection of collections) {
-    await db.dropCollection(collection.name);
-  }
+  const workDeskPlantImage = await Image.create({
+    lightUrl: 'https://api.componentbox.io/assets/light/work_desk_plant.svg',
+    darkUrl: 'https://api.componentbox.io/assets/dark/work_desk_plant.svg',
+  });
+
+  const plusCard = await MobileMultiPlanUpgradeScreenCard.create({
+    heading: 'Plus',
+    subheading: '${PLUS_PRICE}/month',
+    primaryLabeL: 'Most popular',
+    trailingLabel: '2,000 GB',
+    items: ['Sync across unlimited devices', 'Auto-upload more photos with ease', 'Revert any change within 30 days'],
+    image: devicesCouchImage,
+    button_label: 'Try free for 30 days',
+  });
+
+  const professionalCard = await MobileMultiPlanUpgradeScreenCard.create({
+    heading: 'Professional',
+    subheading: '${PRO_PRICE}/month',
+    primaryLabeL: 'More space',
+    trailingLabel: '3,000 GB',
+    items: ['Add custom branding to shared files', 'Password protect your shared links', 'Revert any change within 180 days'],
+    image: workDeskPlantImage,
+    button_label: 'Try free for 30 days',
+  });
 
   const mobileMultiPlanUpgradeScreen = await MobileMultiPlanUpgradeScreen.create({
-    title: 'Do more with Notes',
+    heading: 'Do more with Notes',
+    subheading: "We'll send you a reminder before you are billed",
+    items: [plusCard._id, professionalCard._id],
   });
 
   const fileRequestsStandardMobileListModuleItem = await StandardMobileListModuleItem.create({
@@ -94,11 +114,13 @@ const main = async () => {
     modules: [makeTheMostOfYourPlanStandardMobileListModule._id],
   });
 
-  const accountTabCampaign = await Campaign.create({
+  const standardMobileAccountScreenCampaign = await Campaign.create({
     content: standardMobileAccountScreen._id,
   });
 
-  mongoose.disconnect();
+  const multiPlanUpgradeScreenCampaign = await Campaign.create({
+    content: mobileMultiPlanUpgradeScreen._id,
+  });
 };
 
-main();
+module.exports = main;

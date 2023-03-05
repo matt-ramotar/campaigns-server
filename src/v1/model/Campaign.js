@@ -161,12 +161,29 @@ const standardMobileAccountScreenSchema = new Schema(
   { timestamps: true },
 );
 
-const mobileMultiPlanUpgradeScreenSchema = new Schema(
+const mobileMultiPlanUpgradeScreenCardSchema = new Schema(
   {
-    title: { required: true, type: SchemaTypes.String },
+    heading: { required: true, type: SchemaTypes.String },
+    subheading: { required: true, type: SchemaTypes.String },
+    primaryLabel: { required: false, type: SchemaTypes.String },
+    trailingLabel: { required: false, type: SchemaTypes.String },
+    items: { required: true, type: [SchemaTypes.String] },
+    button_label: { required: true, type: SchemaTypes.String },
+    image: { required: true, type: imageSchema },
   },
   { timestamps: true },
 );
+
+const mobileMultiPlanUpgradeScreenSchema = new Schema(
+  {
+    heading: { required: true, type: SchemaTypes.String },
+    subheading: { required: true, type: SchemaTypes.String },
+    items: { required: true, type: [ObjectId], ref: 'MobileMultiPlanUpgradeScreenCard' },
+  },
+  { timestamps: true },
+);
+
+const MobileMultiPlanUpgradeScreenCard = CampaignContent.discriminator('MobileMultiPlanUpgradeScreenCard', mobileMultiPlanUpgradeScreenCardSchema);
 
 const MobileModule = CampaignContent.discriminator('MobileModule', mobileModuleSchema);
 const MobileListModule = CampaignContent.discriminator('MobileListModule', mobileListModuleSchema);
@@ -204,6 +221,7 @@ module.exports = {
   MobileAccountScreen,
   StandardMobileAccountScreen,
   MobileMultiPlanUpgradeScreen,
+  MobileMultiPlanUpgradeScreenCard,
 
   MobileModule,
   MobileListModule,

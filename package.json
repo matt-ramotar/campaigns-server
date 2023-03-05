@@ -7,7 +7,7 @@
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "format": "prettier --config .prettierrc '****/***/**/*.js*' '***/**/*.js*' '**/*.js*' --write",
-    "id": "node db/seed/generateId.js"
+    "id": "node db/scripts/generate_id.js"
   },
   "keywords": [],
   "author": "",
